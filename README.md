@@ -8,6 +8,8 @@ Wordy allows everyone to publish posts without undergoing any validation
 
 **Wordy contains some CRUD operations which is ti create, read, update and delete posts from wordy**
 
+at=error code=H10 desc="App crashed" method=GET path="/"
+
 # Installation
 
 Clone the project into your desired folder by following the command below:
