@@ -1,11 +1,13 @@
-const express = require("express");
+const express = require('express');
 const { result } = require("lodash");
 const mongoose = require("mongoose");
 const { posts } = require('./models/post');
 const bodyParser = require('body-parser');
 const { postRouter } = require('./routes/postRoutes');
 const { mainRouter } = require('./routes/mainRoutes');
-// cons PORT = process.env.PORT
+const dotenv = require('dotenv').config();
+
+const PORT = process.env.PORT || 5000
 
 
 const app = express();
@@ -29,8 +31,8 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((result) => {
-    app.listen(8000, () => {
-      console.log("Server is listening at port 8000");
+    app.listen(5000, () => {
+      console.log(`Server is listening on port ${PORT}.....`);
     });
   })
   .catch((error) => console.log(error));
