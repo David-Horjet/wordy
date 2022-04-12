@@ -22,8 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // connecting to the database
-dbURI =
-  "mongodb+srv://TestUser:texttext@horjet.xfwyg.mongodb.net/wordy?retryWrites=true&w=majority";
+dbURI = process.env.MONNGO_URI;
 
 mongoose
   .connect(dbURI, {
