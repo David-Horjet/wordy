@@ -22,7 +22,7 @@
               class="w-10 btn btn-lg btn-danger"
               id="delete"
               type="button"
-              data-postId="<%= post._id %>"
+              data-postId=<%=post._id %>
             >
               Delete</a
             >
@@ -42,7 +42,7 @@
     // console.log(postId);
 
     postDelete.onclick = async function () {
-        const request = await fetch(`/delete_post/${postId}`, {
+        const request = await fetch(`/posts/delete_post/${postId}`, {
           method: 'DELETE',
         })
 
