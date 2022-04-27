@@ -1,61 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+  <%- include('../partials/head') %>
 
-<body>
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-    <symbol id="check" viewBox="0 0 16 16">
-      <title>Check</title>
-      <path
-        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-    </symbol>
-  </svg>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="check" viewBox="0 0 16 16">
+        <title>Check</title>
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+        />
+      </symbol>
+    </svg>
 
-  <div class="container py-3">
-    <%- include('../partials/header.ejs') %>
-    <main>
-      <div class="container">
-        <h1 class="display-5 fw-bold"><%= post.title %></h1>
-        <p class="fs-2"><%= post.content %></p>
-        <div class="d-flex justify-content-between">
-          <a 
-              class="w-10 btn btn-lg btn-danger"
-              id="delete"
-              type="button"
-              data-postId=<%=post._id %>
-            >
-              Delete</a
-            >
+    <div class="container py-3">
+      <%- include('../partials/header.ejs') %>
+      <main>
+        <div class="container">
+          <h1 class="display-5 fw-bold"><%= post.title %></h1>
+          <p class="fs-2"><%= post.content %></p>
+          <div class="d-flex justify-content-between">
+            <a class="w-10 btn btn-lg btn-danger" id="delete" type="button" data-id= <%= posts._id %>
+              >Delete</a>
             <a
-              href="/posts/update_post/<%= post._id %>" class="w-10 btn btn-lg btn-primary" type="button">
-            Update</a>
+              href="/posts/update_post/<%= post._id %>"
+              class="w-10 btn btn-lg btn-primary"
+              type="button"
+            >
+              Update</a
+            >
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
 
-    <%- include('../partials/footer.ejs') %>
-  </div>
-  <script>
-    
-    const postDelete = document.querySelector('#delete');
-    const postId = postDelete.dataset.postId;
-    // console.log(postId);
+      <%- include('../partials/footer.ejs') %>
+    </div>
+    <script>
+      const postDelete = document.querySelector("#delete");
+      const postId = postDelete.dataset.id;
+      // console.log(postId);
 
-    postDelete.onclick = async function () {
+      postDelete.onclick = async function () {
         const request = await fetch(`/posts/delete_post/${postId}`, {
-          method: 'DELETE',
-        })
+          method: "DELETE",
+        });
 
         const response = await request.json();
 
         if (response.status === true) {
           window.location.href = response.redirect;
         } else if (response.status === false) {
-          alert('Could not delete that post');
+          alert("Could not delete that post");
           console.log(response);
         }
-      }
-  </script>
-</body>
-
+      };
+    </script>
+  </body>
 </html>
