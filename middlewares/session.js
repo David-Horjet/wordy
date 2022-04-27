@@ -7,5 +7,3 @@ const newSession = session({
      cookies: { secure: true },
      store: MongoStore.create({ mongoUrl: process.env.MONNGO_URI })
 });
-
-module.exports= { newSession };
