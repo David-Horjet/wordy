@@ -64,9 +64,9 @@ const delete_single_post = (req, res) => {
                })
           })
           .catch((error) => {
-               res.json({
+               res.status(400).json({
                     status: false,
-                    error: 'Post delete failed',
+                    message: 'Something went wrong',
                     full_error: error,
                })
           })
