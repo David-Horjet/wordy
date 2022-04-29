@@ -1,13 +1,26 @@
 const express = require('express');
-const { result } = require("lodash");
+const {
+  result
+} = require("lodash");
 const mongoose = require("mongoose");
-const { posts } = require('./models/post');
+const {
+  posts
+} = require('./models/post');
 const bodyParser = require('body-parser');
-const { postRouter } = require('./routes/postRoutes');
-const { mainRouter } = require('./routes/mainRoutes');
+const {
+  postRouter
+} = require('./routes/postRoutes');
+const {
+  mainRouter
+} = require('./routes/mainRoutes');
 const dotenv = require('dotenv').config();
-const { newSession } = require('./middlewares/session');
-const { authRouter } = require('./routes/authRoutes');
+const {
+  newSession
+} = require('./middlewares/session');
+const {
+  authRouter
+} = require('./routes/authRoutes');
+const flash = require('connect-flash');
 
 const PORT = process.env.PORT || 5000
 
@@ -18,9 +31,18 @@ const app = express();
 app.set("view engine", "ejs");
 
 // setting up the middleware
-app.use(newSession)
-app.use(express.urlencoded({ extended: true }));
+app.use(newSession);
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
+app.use(express.static('./public'));
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.successMessage = req.flash('success');
+  res.locals.errorMessage = req.flash('error');
+  next();
+})
 
 // connecting to the database
 dbURI = process.env.MONNGO_URI;
@@ -39,6 +61,7 @@ mongoose
 
 // crud operations
 app.use('/posts', postRouter);
+app.use('/auth', authRouter);
 
 // main routers
 app.use(mainRouter);

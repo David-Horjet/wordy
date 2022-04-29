@@ -19,7 +19,7 @@
           <h1 class="display-5 fw-bold"><%= post.title %></h1>
           <p class="fs-2"><%= post.content %></p>
           <div class="d-flex justify-content-between">
-            <a class="w-10 btn btn-lg btn-danger" id="delete" type="button" data-id= <%= posts._id %>
+            <a class="w-10 btn btn-lg btn-danger" id="delete" type="button" data-id= <%= post._id %>
               >Delete</a>
             <a
               href="/posts/update_post/<%= post._id %>"
@@ -37,7 +37,7 @@
     <script>
       const postDelete = document.querySelector("#delete");
       const postId = postDelete.dataset.id;
-      // console.log(postId);
+      console.log(postId);
 
       postDelete.onclick = async function () {
         const request = await fetch(`/posts/delete_post/${postId}`, {

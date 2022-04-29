@@ -20,7 +20,7 @@
         <div class=" mb-4 bg-light rounded-3">
           <div class="container-fluid py-3">
             <h1 class="display-5 fw-bold pb-3">Welcome to Wordy Blog</h1>
-            <p style="padding: 0;" class="col-md-8 fs-4 pb-3">Wordy is a mini blog website where you can create,read,update and delete posts created by you. Wordy allows everyone to publish posts without undergoing any validation.</p>
+            <p style="padding: 0; font-size: 17px;" class="col-md-8 fs-4 pb-3">Wordy is a mini blog website where you can create,read,update and delete posts created by you. Wordy allows everyone to publish posts without undergoing any validation.</p>
             <a class="btn btn-primary btn-lg" href="/posts/new_post"  style="color: white;">Publish a post</a>
           </div>
         </div>
@@ -29,7 +29,7 @@
 
           <% posts.forEach(post=>{ %>
             <div class="col-md-6 col-lg-4 mt-4">
-              <div style="background-color: rgba(2, 2, 2, 0.756)  !important;;" class="h-100 p-5 text-white bg-dark rounded-3">
+              <div style="background-color: rgba(2, 2, 2, 0.867)  !important;;" class="h-100 p-5 text-white bg-dark rounded">
                 <h2 style="color: rgb(229, 230, 238);"><%= post.title %></h2>
                 <p style="color: rgb(163, 163, 163);"><%= post.snippet %></p>
                 <!-- <p style="color: white;"><%= post.content %></p> -->
