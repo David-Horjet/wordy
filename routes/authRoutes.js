@@ -10,6 +10,7 @@ authRouter.post('/register', authController.registerUser);
 
 // login
 authRouter.get('/login', authController.renderLoginUser);
+authRouter.post('/login', authController.LoginUser);
 
 
 

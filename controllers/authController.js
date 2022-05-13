@@ -36,6 +36,7 @@ const registerUser = async (req, res) => {
      } catch (error) {
           // sending a failed message
           // something went wrong
+          req.flash('error', 'Something went wrong, sending a failed message');
           return res.status(500).redirect('/auth/register');
      }
 };
@@ -44,8 +45,20 @@ const renderLoginUser = ((req, res) => {
      return res.render('login');
 });
 
+const loginUser = ((req, res) => {
+     const email = req.body.email;
+     const password = req.body.password; 
+     
+     try {
+          
+     } catch (error) {
+          
+     }
+});
+
 module.exports = { 
      renderRegisterUser,
      registerUser,
-     renderLoginUser
+     renderLoginUser,
+     loginUser
 };
