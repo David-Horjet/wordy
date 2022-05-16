@@ -1,5 +1,8 @@
-const { User } = require('../models/user');
-const helpers = require('../utils/auth')
+const {
+     User
+} = require('../models/user');
+const helpers = require('../utils/auth');
+const bcrypt = require('bcrypt');
 
 const renderRegisterUser = ((req, res) => {
      return res.render('register');
@@ -18,7 +21,9 @@ const registerUser = async (req, res) => {
           body.password = helpers.generatePasswordHash(body.password);
           body.email = body.email.toLowerCase();
 
-          const isExisting = await User.findOne({ email: body.email });
+          const isExisting = await User.findOne({
+               email: body.email
+          });
 
           if (isExisting) {
                // sending an error message  of email duplicate 
@@ -30,7 +35,7 @@ const registerUser = async (req, res) => {
           await new User(body).save();
 
           // sending a success message
-          req.flash('success', 'Register successful Please login')
+          req.flash('success', 'Register successful Please login');
 
           return res.status(201).redirect('/auth/login');
      } catch (error) {
@@ -45,18 +50,43 @@ const renderLoginUser = ((req, res) => {
      return res.render('login');
 });
 
-const loginUser = ((req, res) => {
-     const email = req.body.email;
-     const password = req.body.password; 
-     
+const loginUser = async (req, res) => {
      try {
-          
-     } catch (error) {
-          
-     }
-});
+          const body = req.body;
+          const user = await User.findOne({
+               email: body.email
+          });
+          if (user) {
+               const comparePassword = await bcrypt.compare(body.password, user.password);
+               if (comparePassword) {
+                    req.session.user_id = user._id;
 
-module.exports = { 
+                    // sending a successful login message
+                    req.flash('success', 'You have successfully login');
+                    res.redirect('/auth/profile');
+               } else {
+                    // something went wrong
+                    req.flash('error', 'Password is incorrect');
+                    res.redirect('/auth/login');
+
+               }
+          } else {
+               // something went wrong
+               req.flash('error', 'Password is incorrect');
+               res.redirect('/auth/login');
+
+          }
+
+
+     } catch (error) {
+          // something went wrong
+          req.flash('error', 'Internal Server error occured');
+          console.log(error);
+          res.status(500).redirect('/auth/login');
+     }
+};
+
+module.exports = {
      renderRegisterUser,
      registerUser,
      renderLoginUser,
