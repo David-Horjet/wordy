@@ -3,7 +3,7 @@ const MongoStore = require('connect-mongo');
 
 const newSession = session({
      secret: 'superSecret',
-     resave: false,
+     resave: true,
      saveUninitialized: true,
      cookies: { maxAge: 60000 },
      store: MongoStore.create({

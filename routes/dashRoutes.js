@@ -6,6 +6,7 @@ const dashController = require('../controllers/dashController');
 
 // profile 
 dashRouter.get('/profile', dashController.profile);
+dashRouter.get('/logout', dashController.logout);
 
 // exporting our dash router
 module.exports = { dashRouter };

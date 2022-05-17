@@ -62,7 +62,7 @@ const loginUser = async (req, res) => {
                     req.session.user_id = user._id;
 
                     // sending a successful login message
-                    req.flash('success', 'You have successfully login');
+                    req.flash('success', 'You have successfully logged in');
                     res.redirect('/user/profile');
                } else {
                     // something went wrong
@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
                }
           } else {
                // something went wrong
-               req.flash('error', 'Password is incorrect');
+               req.flash('error', 'User or email not found');
                res.redirect('/auth/login');
 
           }

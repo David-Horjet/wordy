@@ -74,11 +74,11 @@
                   </ul>
                   <div class="tab-content pt-2">
     
-                    <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                    <div class="py-2 border-top tab-pane fade show active profile-overview" id="profile-overview">
                       <h5 class="card-title">About</h5>
                       <p class=" fst-italic"><%= about %> </p>
     
-                      <h5 class="card-title">Profile Details</h5>
+                      <h5 class="card-title border-top border-bottom py-3 ">Profile Details</h5>
     
                       <div class="row pt-3">
                         <div class="col-lg-3 col-md-4 label ">Full Name</div>
@@ -98,6 +98,10 @@
                       <div class="row pt-3">
                         <div class="col-lg-3 col-md-4 label">Email</div>
                         <div class="col-lg-9 col-md-8"><%= email %> </div>
+                      </div>
+
+                      <div class="text-center py-3">
+                        <button class="w-10 btn btn-lg btn-danger" type="submit"><a style="text-decoration: none;" class="text-white" href="/user/logout">Log Out</a></button>
                       </div>
     
                     </div>
