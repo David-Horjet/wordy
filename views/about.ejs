@@ -43,18 +43,18 @@
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/5.1/examples/cover/cover.css" rel="stylesheet" />
   </head>
-  <body class="d-flex h-100 text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <body >
+    <div class="container d-flex w-100 p-3 mx-auto flex-column">
       <%- include('../partials/header.ejs') %>
       <main class="px-3">
-        <h1>Welcome to Wordy</h1>
-        <p class="lead">
+        <h1 class="text-center">Welcome to Wordy</h1>
+        <p class="lead text-center">
           Wordy is a mini blog website where you can create,read,update and delete posts created by you. Wordy allows everyone to publish posts without undergoing any validation.
         </p>
-        <p class="lead">
+        <p class="lead text-center">
           <a
             href="/posts/new_post"
-            class="btn btn-lg btn-secondary fw-bold border-white bg-white"
+            class="btn btn-lg btn-secondary fw-bold border-white bg-primary text-white"
             >Publish a Post</a
           >
         </p>

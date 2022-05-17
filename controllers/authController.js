@@ -63,7 +63,7 @@ const loginUser = async (req, res) => {
 
                     // sending a successful login message
                     req.flash('success', 'You have successfully login');
-                    res.redirect('/auth/profile');
+                    res.redirect('/user/profile');
                } else {
                     // something went wrong
                     req.flash('error', 'Password is incorrect');

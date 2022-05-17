@@ -31,17 +31,17 @@
           <div class="row">
             <div class="col-xl-4">
     
-              <div class="card">
+              <div class="card bg-dark">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
     
                   <img src="/images/avatar-6.jpg" alt="Profile" class="rounded-circle">
-                  <h2><%= name %> <%= lname %> </h2>
-                  <h5>Web Designer</h5>
+                  <h2 class="text-light"><%= name %> <%= lname %> </h2>
+                  <h5 class="text-light"><%= occupation %> </h5>
                   <div class="social-links mt-2">
-                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="twitter text-light px-2"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="facebook text-light px-2"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="instagram text-light px-2"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="linkedin text-light px-2"><i class="bi bi-linkedin"></i></a>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                     </li>
     
                     <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">View Posts</button>
                     </li>
     
                     <li class="nav-item">
@@ -68,7 +68,7 @@
                     </li>
     
                     <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Switch Accounts</button>
                     </li>
     
                   </ul>
@@ -80,22 +80,22 @@
     
                       <h5 class="card-title">Profile Details</h5>
     
-                      <div class="row">
+                      <div class="row pt-3">
                         <div class="col-lg-3 col-md-4 label ">Full Name</div>
                         <div class="col-lg-9 col-md-8"><%= name %> <%= lname %></div>
                       </div>
     
-                      <div class="row">
+                      <div class="row pt-3">
                         <div class="col-lg-3 col-md-4 label">Job</div>
                         <div class="col-lg-9 col-md-8"><%= occupation %> </div>
                       </div>
     
-                      <div class="row">
+                      <div class="row pt-3">
                         <div class="col-lg-3 col-md-4 label">Phone</div>
                         <div class="col-lg-9 col-md-8"><%= phone %> </div>
                       </div>
     
-                      <div class="row">
+                      <div class="row pt-3">
                         <div class="col-lg-3 col-md-4 label">Email</div>
                         <div class="col-lg-9 col-md-8"><%= email %> </div>
                       </div>

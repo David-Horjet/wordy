@@ -20,6 +20,9 @@ const {
 const {
   authRouter
 } = require('./routes/authRoutes');
+const {
+  dashRouter
+} = require('./routes/dashRoutes');
 const flash = require('connect-flash');
 
 const PORT = process.env.PORT || 5000
@@ -61,7 +64,12 @@ mongoose
 
 // crud operations
 app.use('/posts', postRouter);
+
+// auth operations 
 app.use('/auth', authRouter);
+
+// dash operations 
+app.use('/user', dashRouter);
 
 // main routers
 app.use(mainRouter);
