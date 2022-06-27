@@ -3,14 +3,15 @@ const express = require('express');
 // creating the router
 const authRouter = express.Router();
 const authController = require('../controllers/authController');
+const { logoutRequired } = require('../middlewares/auth')
 
 // register
-authRouter.get('/register', authController.renderRegisterUser);
-authRouter.post('/register', authController.registerUser);
+authRouter.get('/register', logoutRequired, authController.renderRegisterUser);
+authRouter.post('/register', logoutRequired, authController.registerUser);
 
 // login
-authRouter.get('/login', authController.renderLoginUser);
-authRouter.post('/login', authController.loginUser);
+authRouter.get('/login', logoutRequired, authController.renderLoginUser);
+authRouter.post('/login', logoutRequired, authController.loginUser);
 
 
 

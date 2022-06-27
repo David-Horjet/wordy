@@ -50,39 +50,83 @@ const renderLoginUser = ((req, res) => {
      return res.render('login');
 });
 
+// const loginUser = async (req, res) => {
+//      try {
+//           const body = req.body;
+//           const user = await User.findOne({
+//                email: body.email
+//           });
+//           if (user) {
+//                const comparePassword = await bcrypt.compare(body.password, user.password);
+//                if (comparePassword) {
+//                     req.session.user_id = user._id;
+
+//                     // sending a successful login message
+//                     req.flash('success', 'You have successfully logged in');
+//                     res.redirect('/user/profile');
+//                } else {
+//                     // something went wrong
+//                     req.flash('error', 'Password is incorrect');
+//                     res.redirect('/auth/login');
+
+//                }
+//           } else {
+//                // something went wrong
+//                req.flash('error', 'User or email not found');
+//                res.redirect('/auth/login');
+
+//           }
+
+
+//      } catch (error) {
+//           // something went wrong
+//           req.flash('error', 'Internal Server error occured');
+//           console.log(error);
+//           res.status(500).redirect('/auth/login');
+//      }
+// };
+
 const loginUser = async (req, res) => {
      try {
           const body = req.body;
+
+          if (!body.email || !body.password) {
+               // sending an error message
+               req.flash('error', 'Please provide all necessary information');
+               return res.status(400).redirect('/auth/register');
+          }
+
+          // finding the user
           const user = await User.findOne({
-               email: body.email
+               email: body.email.toLowerCase()
           });
-          if (user) {
-               const comparePassword = await bcrypt.compare(body.password, user.password);
-               if (comparePassword) {
-                    req.session.user_id = user._id;
-
-                    // sending a successful login message
-                    req.flash('success', 'You have successfully logged in');
-                    res.redirect('/user/profile');
-               } else {
-                    // something went wrong
-                    req.flash('error', 'Password is incorrect');
-                    res.redirect('/auth/login');
-
-               }
-          } else {
+          if (!user) {
                // something went wrong
                req.flash('error', 'User or email not found');
-               res.redirect('/auth/login');
-
+               return res.status(400).redirect('/auth/login');
           }
+          const valid = helpers.validatePassword(body.password, user.password);
+
+          if (!valid) {
+               // something went wrong
+               req.flash('error', 'Incorrect Password');
+               return res.status(400).redirect('/auth/login');
+          }
+
+          // if password match
+          // creating a session for the user
+          req.session.user = user;
+
+          // sending a successful login message
+          req.flash('success', 'You have successfully logged in');
+          return res.status(200).redirect(`/user/profile/${user._id}`);
 
 
      } catch (error) {
           // something went wrong
           req.flash('error', 'Internal Server error occured');
           console.log(error);
-          res.status(500).redirect('/auth/login');
+          return res.status(500).redirect('/auth/login');
      }
 };
 

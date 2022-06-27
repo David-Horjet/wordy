@@ -16,16 +16,13 @@ const userSchema = new Schema({
           type: String,
           required: true,
      },
-     occupation: {
-          type: String,
-          required: true,
-     },
      password: {
           type: String,
           required: true,
      },
      phone: String,
      about: String,
+     image: String
 
 }, {
      timestamps: true

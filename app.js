@@ -40,8 +40,10 @@ app.use(express.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(express.static('./public'));
+app.use("/user/profile/public/", express.static('./public'));
 app.use(flash());
 app.use((req, res, next) => {
+  res.locals.user = req.session.user;
   res.locals.successMessage = req.flash('success');
   res.locals.errorMessage = req.flash('error');
   next();
